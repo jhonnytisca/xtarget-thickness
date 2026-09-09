@@ -1,0 +1,24 @@
+[Ge]
+name = "Germanium"
+atomic_mass = 72.630
+density = 5.323
+
+[Sn]
+name = "Tin"
+atomic_mass = 118.710
+density = 7.310
+
+[Si]
+name = "Silicon"
+atomic_mass = 28.085
+density = 2.329
+
+[C]
+name = "Carbon"
+atomic_mass = 12.011
+density = 2.267
+
+[Pb]
+name = "Lead"
+atomic_mass = 207.2
+density = 11.340
