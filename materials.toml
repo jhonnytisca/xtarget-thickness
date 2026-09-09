@@ -22,3 +22,8 @@ density = 2.267
 name = "Lead"
 atomic_mass = 207.2
 density = 11.340
+
+[O]
+name = "Oxygen"
+atomic_mass = 15.999
+density = 1.429
