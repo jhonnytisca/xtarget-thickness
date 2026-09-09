@@ -1,0 +1,23 @@
+[project]
+name = "xtarget-thickness"
+version = "0.1.0"
+description = "Extract SIMNRA xtarget layers and convert areal density to physical thickness"
+readme = "README.md"
+authors = [
+    { name = "Jhonny Tiscareno Ramirez", email = "jhonnytisca@hotmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+xtarget-thickness = "xtarget_thickness:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.6",
+]
