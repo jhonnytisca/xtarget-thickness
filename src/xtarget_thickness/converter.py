@@ -1,6 +1,37 @@
-from .models import Material
+from .models import Layer, Material
 
 AVOGADRO_CONSTANT = 6.022_140_76e23
+
+
+def layer_to_nm(
+    layer: Layer,
+    materials: dict[str, Material],
+) -> float:
+    """
+    Convert a SIMNRA layer areal density to physical thickness.
+
+    The layer areal density is given in units of 1e15 atoms/cm².
+
+    For mixed layers, the volume contribution of each element is
+    calculated according to its atomic fraction, atomic mass, and
+    configured density.
+    """
+
+    atoms_per_cm2 = layer.areal_density * 1e15
+
+    molar_volume = 0.0
+
+    for symbol, fraction in layer.elements.items():
+        try:
+            material = materials[symbol]
+        except KeyError as exc:
+            raise ValueError(f"No material data configured for {symbol!r}") from exc
+
+        molar_volume += fraction * material.atomic_mass / material.density
+
+    thickness_cm = atoms_per_cm2 / AVOGADRO_CONSTANT * molar_volume
+
+    return thickness_cm * 1e7
 
 
 def areal_density_to_nm(
