@@ -4,9 +4,9 @@ atomic_mass = 72.630
 density = 5.323
 
 [Sn]
-name = "Tin"
+name = "alpha-Tin"
 atomic_mass = 118.710
-density = 7.310
+density = 5.770
 
 [Si]
 name = "Silicon"
