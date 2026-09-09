@@ -5,6 +5,7 @@ from pathlib import Path
 from .converter import layer_to_nm
 from .materials import load_materials
 from .parser import XTargetParseError, parse_xtarget
+from .writer import write_csv, write_txt
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -26,6 +27,18 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=Path("materials.toml"),
         help=("Material configuration file (default: materials.toml)"),
+    )
+
+    parser.add_argument(
+        "--no-csv",
+        action="store_true",
+        help="Do not write the CSV output file.",
+    )
+
+    parser.add_argument(
+        "--no-txt",
+        action="store_true",
+        help="Do not write the TXT output file.",
     )
 
     return parser
@@ -90,6 +103,33 @@ def main() -> None:
             f"{layer.areal_density:>30.3f}"
             f"{thickness_text:>20}"
         )
+
+    written_files: list[Path] = []
+
+    if not args.no_csv:
+        written_files.append(
+            write_csv(
+                args.file,
+                layers,
+                materials,
+            )
+        )
+
+    if not args.no_txt:
+        written_files.append(
+            write_txt(
+                args.file,
+                layers,
+                materials,
+            )
+        )
+
+    if written_files:
+        print()
+        print("Written files:")
+
+        for path in written_files:
+            print(f"  {path}")
 
 
 if __name__ == "__main__":
