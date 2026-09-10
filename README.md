@@ -9,6 +9,7 @@ The conversion uses configurable material densities and currently targets:
 * Si
 * C
 * Pb
+* O
 
 ## Setup
 
